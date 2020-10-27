@@ -3,7 +3,7 @@ class PXP {
     function __construct($file)
     {
         $this->lastResult = NULL;
-        $this->lasrError = NULL;
+        $this->lastError = NULL;
         $this->sheetId = 1;
         $this->isHeader = FALSE;
         $this->headerRow = 1;
@@ -46,6 +46,9 @@ class PXP {
     }
 
     public function GetArray () {
+		if (!empty($this->lastError)) {
+			return FALSE;
+		}
         $result = array();
         $headerArr = array();
         if ($this->isHeader) {
